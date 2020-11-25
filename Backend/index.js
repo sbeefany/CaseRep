@@ -1,5 +1,6 @@
 const createError = require('http-errors')
 const HTTPStatuses = require('statuses')
+var cors = require('cors')
 
 class Worker {
     constructor (id, name, surename, login, password, position, sallary) {
@@ -36,6 +37,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 
 const app = express()
+
+app.use(cors())
 
   function randomId(){
     return Math.random().toString(36).substr(2,9)
@@ -98,9 +101,10 @@ app.post("/tasks",(req,res) => {
 app.post("/authorization", (req,res)=>{
     console.log(req.body)
     
-    var worker = mockWorkers.find(worker=>worker.login ==="Vlada")
+    var worker = mockWorkers.find(worker=>worker.login ===req.body.login)
     console.log(worker)
     if(worker ===undefined){
+        
         throw createError(400,'User was not found')
     }
     if(worker.password===req.body.password){
@@ -110,7 +114,6 @@ app.post("/authorization", (req,res)=>{
     }
       
 })
-
-app.listen(3000)
+app.listen(9000)
 
 
