@@ -1,9 +1,11 @@
 import { MainAPI } from "../../API/API"
 
 let initialState = {
-    name: null,
-    user_id: null,
-    role_id: null,
+    id: null,
+    name: "",
+    position: "",
+    sallary: null,
+    surename: "",
     isAuth: false,
     isFetching:false
 }
@@ -36,8 +38,8 @@ export const setToggle = (isFetching) => {
     return ({type:TOGGLE_FETCHING,isFetching})
     }
 
-export const SetAuthCreation = (name, user_id, role_id, isAuth) => {
-    return ({ type: SET_AUTH_USER, payload: { name, user_id, role_id, isAuth } });
+export const SetAuthCreation = (name, id, surename,sallary,position, isAuth) => {
+    return ({ type: SET_AUTH_USER, payload: {name, id, surename,sallary,position, isAuth} });
 }
 export const SetLogOut = () => {
     return ({ type: SET_LOGIN_OUT })
@@ -47,7 +49,7 @@ export const loginRequest = (login, password) =>
     async (dispatch) => {
         let response = await MainAPI.login(login, password);
         console.log(response)
-            dispatch(SetAuthCreation(response.name, response.user_id, response.role_id, true))
+            dispatch(SetAuthCreation(response.name, response.id, response.surename,response.sallary,response.position, true))
     }
 
 

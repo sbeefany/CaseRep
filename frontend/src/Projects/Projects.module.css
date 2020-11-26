@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: 100vh;
+}
+.allProjectsContainer{
+    width: 30%;
+    background-color: gray;
+    height: 100%;
+}
+.projectContainer{
+    width: 70%;
+    height: 100%;
+    background-color: greenyellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
