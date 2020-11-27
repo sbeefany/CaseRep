@@ -11,6 +11,12 @@ export const MainAPI = {
       .then(response => {   
         return response.data
       })
+  },
+  takeAllProjects(){
+    return axios.get(`http://localhost:9000/projects`)
+      .then(response => {
+        return response.data
+      })
   }
 }
  

@@ -1,0 +1,49 @@
+.container{
+    width: 100%;
+    height: 100%;
+}
+.headerContainer{
+    width: 100%;
+    height: 10%;
+    background-color: #3b3b3b;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+.contentContainer{
+    width: 100%;
+    height: 90%;
+    background-color: #494949;
+}
+
+.mainTitle{
+    margin-top: 50px;
+    margin-left: 40px;
+    float: left;
+    color:white
+}
+.name{
+    margin-left: 40px;
+    font-size: 26px;
+    color: white;
+}
+.position{
+    margin-left: 40px;
+    color:#e1dfdf
+}
+.project{
+    width: 100%;
+    height: 50px;
+    background-color: #c4c4c4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.title{
+    margin-left: 40px;
+}
+.mainP{
+    margin-left: 40px;
+}

@@ -3,7 +3,7 @@ import { MainAPI } from "../../API/API"
 let initialState = {
     id: null,
     name: "",
-    position: "",
+    position: null,
     sallary: null,
     surename: "",
     isAuth: false,
@@ -16,7 +16,7 @@ const AuthReducer = (state = initialState, action) => {
             return { ...state, ...action.payload }
         }
         case SET_LOGIN_OUT: {
-            return { ...state, name: null, user_id: null, role_id: null, isAuth: false }
+            return { ...state, id: null,name: "", position: null, sallary: null, surename: "", isAuth: false, }
 
         }
         case TOGGLE_FETCHING:{
@@ -48,7 +48,6 @@ export const SetLogOut = () => {
 export const loginRequest = (login, password) =>
     async (dispatch) => {
         let response = await MainAPI.login(login, password);
-        console.log(response)
             dispatch(SetAuthCreation(response.name, response.id, response.surename,response.sallary,response.position, true))
     }
 

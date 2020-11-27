@@ -43,10 +43,10 @@ app.use(cors())
   function randomId(){
     return Math.random().toString(36).substr(2,9)
 }
-const mockWorkers = [new Worker("1","Vlada","Aleksenko","Vlada","Vlada","Системный аналитик",0),
-new Worker("2","Egor","Alexandrov","Egor","Egor","Разработчик",0),
-new Worker("3","Eduard","Pahomov","Eduard","Eduard","Проектировщик БД",0),
-new Worker("4","Sasha","Blinov","Sasha","Sasha","Менеджер",1000)]
+const mockWorkers = [new Worker("1","Vlada","Aleksenko","Vlada","Vlada",1,0),
+new Worker("2","Egor","Alexandrov","Egor","Egor",1,0),
+new Worker("3","Eduard","Pahomov","Eduard","Eduard",2,0),
+new Worker("4","Sasha","Blinov","Sasha","Sasha",3,1000)]
 
 const mockTasks=[new Task(randomId(),"Title","HERE THERE IS A LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG DISCRIPTION",100,3)]
 

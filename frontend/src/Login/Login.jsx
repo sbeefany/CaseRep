@@ -20,13 +20,13 @@ const Login = (props) => {
         <div className = {s.container}>
             <div className = {s.loginForm}>
             <div className={s.header}>Авторизация</div>
-            <div className={s.line}></div>
             <div className = {s.inputs}>
             <input placeholder = 'Логин' value = {login} onChange = {inputLoginInfo}/><br/>
             <input placeholder = 'Пароль' type ='password' value = {password} onChange = {inputPasswordInfo}/>
+            <button onClick={()=>props.loginRequest(login,password)}>Войти</button>
             </div>
            
-            <button onClick={()=>props.loginRequest(login,password)}>Войти</button>                
+                           
             </div>
             {props.loginError !=='' ? <div className = {s.error}>{props.loginError}</div>:''}
         </div>

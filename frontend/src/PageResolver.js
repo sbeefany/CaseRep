@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Project from './Projects/components/Project/Project';
 import Projects from './Projects/Projects';
 
 class PageResolver extends React.Component {
   getUserStartPage = (role) => {
-     if (role === 'Системный аналитик') return <Projects/>;
+     if (role === 1) return <Projects/>;
+     if ((role === 2) || (role === 3)) return <Project/>
   };
 
   render() {
