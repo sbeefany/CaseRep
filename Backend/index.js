@@ -3,7 +3,7 @@ const HTTPStatuses = require('statuses')
 var cors = require('cors')
 
 class Worker {
-    constructor (id, name, surename, login, password, position, sallary) {
+    constructor (id, name, surename, login, password, position, sallary, projects) {
       this.id = id
       this.name = name
       this.surename = surename
@@ -11,6 +11,7 @@ class Worker {
       this.password = password
       this.position = position
       this.sallary = sallary
+      this.projects = projects
     }
   }
   
@@ -19,10 +20,9 @@ class Worker {
           this.id = id
           this.title = title
           this.tasks = tasks
-          this.workers = workers
       }
   }
-  
+  //1- СОЗДАНО 2 - В ПРОЦЕССЕ 3-ЗАВЕРШЕНО 
   class Task {
       constructor (id, title, discription, weight,author,status) {
           this.id = id
@@ -38,19 +38,23 @@ const bodyParser = require('body-parser')
 
 const app = express()
 
-app.use(cors())
+const mockWorkers = [new Worker("1","Vlada","Aleksenko","Vlada","Vlada","Системный аналитик",0,[]),
+new Worker("2","Egor","Alexandrov","Egor","Egor","Разработчик",0,[]),
+new Worker("3","Eduard","Pahomov","Eduard","Eduard","Проектировщик БД",0,[]),
+new Worker("4","Sasha","Blinov","Sasha","Sasha","Менеджер",1000),[]]
 
-  function randomId(){
-    return Math.random().toString(36).substr(2,9)
-}
-const mockWorkers = [new Worker("1","Vlada","Aleksenko","Vlada","Vlada",1,0),
-new Worker("2","Egor","Alexandrov","Egor","Egor",1,0),
-new Worker("3","Eduard","Pahomov","Eduard","Eduard",2,0),
-new Worker("4","Sasha","Blinov","Sasha","Sasha",3,1000)]
+const mockTasks=[new Task("123123","Title","HERE THERE IS A LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG DISCRIPTION",100,"3",1),
+new Task("1231234","Title","HERE THERE IS A small DISCRIPTION",120,2),
+new Task("1231235","Title2","HERE THERE IS A DISCRIPTION",20,3),
+new Task("1231236","Title3"," EGOR IS LOH",10,3),
+new Task("1231237","Title4","mOCK PROJECT",90,1)]
 
-const mockTasks=[new Task(randomId(),"Title","HERE THERE IS A LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG DISCRIPTION",100,3)]
+const mockProjects = [new Project("22222222222222222223","ProjectTitle",mockTasks),
+new Project("22222222222222222224","ProjectTitle2",mockTasks),
+new Project("22222222222222222225","ProjectTitle3",mockTasks),
+new Project("22222222222222222226","ProjectTitle4",mockTasks)]
 
-const mockProjects = [new Project(randomId(),"ProjectTitle",mockWorkers,mockTasks)]
+mockWorkers.forEach(worker=> worker.projects=mockProjects)
 
 app.use(bodyParser.json())
 
@@ -71,9 +75,16 @@ app.get("/workers/:id", (req,res) =>{
 //Получение всех задач
 app.get("/tasks", (req,res) =>res.json(mockTasks))
 //Получение конкретной задачи
-app.get("/tska/:id", (req,res) =>{
+app.get("/task/:id", (req,res) =>{
     var task = mockTasks.find(task=>task.id===req.params.id)
     res.json(task)
+})
+//Получения участников проекта
+app.get("/projects/workers/:id",(req,res)=>{
+    var project = mockProjects.find(project => project.id===req.params.id)
+    var workers =  mockWorkers.filter(
+      worker=> worker.projects.includes(project))
+    res.json(workers)
 })
 
 //Добавление проекта
@@ -101,10 +112,9 @@ app.post("/tasks",(req,res) => {
 app.post("/authorization", (req,res)=>{
     console.log(req.body)
     
-    var worker = mockWorkers.find(worker=>worker.login ===req.body.login)
+    var worker = mockWorkers.find(worker=>worker.login === req.body.login)
     console.log(worker)
     if(worker ===undefined){
-        
         throw createError(400,'User was not found')
     }
     if(worker.password===req.body.password){
@@ -114,6 +124,7 @@ app.post("/authorization", (req,res)=>{
     }
       
 })
+
 app.listen(9000)
 
 
