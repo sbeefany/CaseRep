@@ -50,7 +50,6 @@ export const allProjectsRequest = () =>
 
     export const allWorkersRequest = () =>
     async (dispatch) => {
-        debugger
         dispatch(setFetching(true))
         let response = await MainAPI.takeAllWorkers();
             dispatch(setAllWorkers(response));

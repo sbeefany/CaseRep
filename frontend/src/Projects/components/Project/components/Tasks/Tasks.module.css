@@ -1,0 +1,35 @@
+.header {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.table {
+    width: 100%;
+    text-align: center;
+}
+
+.tr td {
+    border: none;
+    border-bottom: 2px solid #ff4a2b;
+    border-collapse: collapse;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.td2 {
+    width: 30%;
+}
+
+.td1 {
+    width: 4%;
+}
+
+.td3 {
+    width: 20%;
+}
+
+.td4 {
+    width: 3%;
+}

@@ -2,9 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import s from './MainInfo.module.css'
 
-const MainInfo = ({curentProjectRender,allWorkers,position,salary}) => {
-    console.log(allWorkers)
-    console.log(curentProjectRender.leaderId)
+const MainInfo = ({curentProjectRender,allWorkers,position,sallary}) => {
     return (
         <>
             <h1 className={s.title}>Общая информация</h1>
@@ -34,7 +32,7 @@ const MainInfo = ({curentProjectRender,allWorkers,position,salary}) => {
                                 {position !== 1 ?
                                 <tr>
                                     <td>Моя процентная доля</td>
-                                    <td>{salary}</td>
+                                    <td>{sallary}</td>
                                 </tr>
                                 : ''}
                             </tbody>
@@ -46,7 +44,7 @@ const MainInfo = ({curentProjectRender,allWorkers,position,salary}) => {
 const mapStateToProps = (state) => ({
     allWorkers:state.AdminReducer.allWorkers,
     position:state.AuthReducer.position,
-    salary:state.AuthReducer.salary
+    sallary:state.AuthReducer.sallary
 })
 
 export default connect(mapStateToProps,{})(MainInfo)

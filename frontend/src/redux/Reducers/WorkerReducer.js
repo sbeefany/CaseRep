@@ -1,7 +1,7 @@
 import { MainAPI } from "../../API/API"
 
 let initialState = {
-   currentProject:{},
+   currentProject:[],
    isFetching:false
 }
 
@@ -35,7 +35,6 @@ export const setFetching = (isFetching) => {
 export const projectRequest = () =>
     async (dispatch) => {
         dispatch(setFetching(true))
-        console.log('111')
         let response = await MainAPI.takeCurrentProject();
             dispatch(SetProject(response));
             dispatch(setFetching(false))

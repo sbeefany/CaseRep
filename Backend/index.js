@@ -70,7 +70,7 @@ app.use(bodyParser.json())
 app.get("/projects", (req,res) =>res.json(mockProjects))
 //Получение конкретного проекта
 app.get("/projects/:id", (req,res) =>{
-var project = mockProjects.find(project => project.id===req.params.id)
+var project = mockProjects.find(project => project.id=== +req.params.id)
 res.json(project)
 })
 //Получение всех работников

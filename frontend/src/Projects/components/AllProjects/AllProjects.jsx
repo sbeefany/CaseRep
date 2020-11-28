@@ -10,7 +10,7 @@ const AllProjects = (props) => {
     useEffect(()=>{
         allProjectsRequest();
         allWorkersRequest();
-    },[])
+    },[allWorkersRequest,allProjectsRequest])
 
     return (
         <div className={s.container}>

@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import Projects from './Pages/PageForAdmin/Projects';
 import CurrentProject from './Pages/PageForWorkerAMain/CurrentProject';
 
+
 class PageResolver extends React.Component {
   getUserStartPage = (role) => {
      if (role === 1) return <Projects/>;
