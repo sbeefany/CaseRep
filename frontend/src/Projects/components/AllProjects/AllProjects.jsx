@@ -10,7 +10,6 @@ const AllProjects = (props) => {
     useEffect(()=>{
         allProjectsRequest();
         allWorkersRequest();
-
     },[])
 
     return (

@@ -32,11 +32,11 @@ export const setFetching = (isFetching) => {
     return ({type:SET_FETCHING, isFetching})
 }
 
-export const projectRequest = (id) =>
+export const projectRequest = () =>
     async (dispatch) => {
         dispatch(setFetching(true))
-        let response = await MainAPI.takeCurrentProject(id);
-        console.log(response)
+        console.log('111')
+        let response = await MainAPI.takeCurrentProject();
             dispatch(SetProject(response));
             dispatch(setFetching(false))
     }

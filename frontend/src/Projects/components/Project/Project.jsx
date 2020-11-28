@@ -1,16 +1,10 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import s from './Project.module.css';
-import {projectRequest} from '../../../redux/Reducers/WorkerReducer';
+import MainInfo from './components/MainInfo';
 
 const Project = (props) => {
-    const {idAdmin, allProjects,currentProject,isFetching,id,projectRequest} = props;
-
-    useEffect(()=>{
-        if (!idAdmin){
-            projectRequest(id);
-        }
-    },[])
+    const {idAdmin, allProjects,currentProject,id,isFetching} = props;
 
     const findCurrentProject = ()=> {
         if (idAdmin && JSON.stringify(allProjects) !== '[]'){
@@ -20,6 +14,7 @@ const Project = (props) => {
             return currentProject
         }
     }
+    debugger
 
     const curentProjectRender = findCurrentProject();
 
@@ -29,10 +24,10 @@ const Project = (props) => {
     return (
         <div className = {s.container}>
             <div className={s.contentContainer}>
-            {isFetching ? 'Загрузка...' :
+                {isFetching===true  ? 'Загрузка...' :
                 <div className={s.contentWrapper}> 
                     <div className={s.publicInfo}>
-
+                       <MainInfo curentProjectRender={curentProjectRender} />
                     </div>  
                 </div>
 }
@@ -44,8 +39,9 @@ const Project = (props) => {
 const mapStateToProps = (state) => ({
     allProjects:state.AdminReducer.allProjects,
     currentProject:state.WorkerReducer.currentProject,
+    id:state.AuthReducer.id,
     isFetching:state.WorkerReducer.isFetching,
-    id:state.AuthReducer.id
+  
 })
 
-export default connect(mapStateToProps,{projectRequest})(Project)
+export default connect(mapStateToProps,{})(Project)

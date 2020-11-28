@@ -1,0 +1,13 @@
+.title{
+    text-align: left;
+}
+table{
+    width:450px;
+}
+td{
+    width: 50%;
+    text-align: left;
+    background-color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
