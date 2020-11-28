@@ -2,6 +2,7 @@ const createError = require('http-errors')
 const HTTPStatuses = require('statuses')
 var cors = require('cors')
 
+//Позиция 1-Системный аналитик 2- Разработчик 3-Проектировщик БД 4-Менеджер
 class Worker {
     constructor (id, name, surename, login, password, position, sallary, projects) {
       this.id = id
@@ -16,10 +17,15 @@ class Worker {
   }
   
   class Project {
-      constructor (id, title, workers, tasks) {
+      constructor (id, title,leaderId,theBeginingDate,theEndDate,costs, tasks) {
           this.id = id
           this.title = title
+          this.leaderId=leaderId
+          this.theBeginingDate=theBeginingDate
+          this.theEndDate=theEndDate
+          this.costs=costs
           this.tasks = tasks
+
       }
   }
   //1- СОЗДАНО 2 - В ПРОЦЕССЕ 3-ЗАВЕРШЕНО 
@@ -38,21 +44,21 @@ const bodyParser = require('body-parser')
 
 const app = express()
 
-const mockWorkers = [new Worker("1","Vlada","Aleksenko","Vlada","Vlada","Системный аналитик",0,[]),
-new Worker("2","Egor","Alexandrov","Egor","Egor","Разработчик",0,[]),
-new Worker("3","Eduard","Pahomov","Eduard","Eduard","Проектировщик БД",0,[]),
-new Worker("4","Sasha","Blinov","Sasha","Sasha","Менеджер",1000),[]]
+const mockWorkers = [new Worker(1,"Vlada","Aleksenko","Vlada","Vlada",1,0,[]),
+new Worker(2,"Egor","Alexandrov","Egor","Egor",2,0,[]),
+new Worker(3,"Eduard","Pahomov","Eduard","Eduard",3,0,[]),
+new Worker(4,"Sasha","Blinov","Sasha","Sasha",4 ,1000),[]]
 
-const mockTasks=[new Task("123123","Title","HERE THERE IS A LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG DISCRIPTION",100,"3",1),
-new Task("1231234","Title","HERE THERE IS A small DISCRIPTION",120,2),
-new Task("1231235","Title2","HERE THERE IS A DISCRIPTION",20,3),
-new Task("1231236","Title3"," EGOR IS LOH",10,3),
-new Task("1231237","Title4","mOCK PROJECT",90,1)]
+const mockTasks=[new Task(123,"Title","HERE THERE IS A LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG DISCRIPTION",100,"3",1),
+new Task(124,"Title","HERE THERE IS A small DISCRIPTION",120,2),
+new Task(125,"Title2","HERE THERE IS A DISCRIPTION",20,3),
+new Task(126,"Title3"," EGOR IS LOH",10,3),
+new Task(127,"Title4","mOCK PROJECT",90,1)]
 
-const mockProjects = [new Project("22222222222222222223","ProjectTitle",mockTasks),
-new Project("22222222222222222224","ProjectTitle2",mockTasks),
-new Project("22222222222222222225","ProjectTitle3",mockTasks),
-new Project("22222222222222222226","ProjectTitle4",mockTasks)]
+const mockProjects = [new Project(222,"ProjectTitle",2,new Date,new Date,15750000,mockTasks),
+new Project(223,"ProjectTitle2",2,new Date,new Date,15750000,mockTasks),
+new Project(224,"ProjectTitle3",2,new Date,new Date,15750000,mockTasks),
+new Project(225,"ProjectTitle4",2,new Date,new Date,15750000,mockTasks)]
 
 mockWorkers.forEach(worker=> worker.projects=mockProjects)
 
