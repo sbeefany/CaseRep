@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import AllProjects from './components/AllProjects/AllProjects';
-import Project from './components/Project/Project';
+import AllProjects from '../../Projects/components/AllProjects/AllProjects';
+import Project from '../../Projects/components/Project/Project';
 import s from './Projects.module.css'
 
 
@@ -14,7 +14,7 @@ const Projects = () => {
             </div>
             <div className={s.projectContainer}>
             {isClickNext !== -1 ?
-            <Project id = {isClickNext}/> :
+            <Project idAdmin = {isClickNext}/> :
              'Выберите проект'}
             </div>
           

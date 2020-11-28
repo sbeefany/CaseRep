@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import {allProjectsRequest} from '../../../redux/Reducers/AdminReducer';
+import {allProjectsRequest, allWorkersRequest} from '../../../redux/Reducers/AdminReducer';
+import {SetLogOut} from '../../../redux/Reducers/AuthReducer'
 import s from './AllProjects.module.css'
 
 const AllProjects = (props) => {
-    const {setClick, allProjectsRequest,surename,position,name,allProjects,isFetching} = props;
+    const {setClick, allProjectsRequest,surename,position,name,allProjects,isFetching,SetLogOut,allWorkersRequest,allWorkers} = props;
 
     useEffect(()=>{
-        allProjectsRequest()
+        allProjectsRequest();
+        allWorkersRequest();
+
     },[])
 
     return (
@@ -15,6 +18,7 @@ const AllProjects = (props) => {
         <div className={s.headerContainer}>
             <div className = {s.name}>
                 {surename}  {name}
+                <button onClick={()=>SetLogOut()} className={s.buttonExt}>Выход</button>
             </div>
             <div className = {s.position}>
                {position === 1 ? 'Управляющий' : '' } 
@@ -24,12 +28,18 @@ const AllProjects = (props) => {
             <h2 className={s.mainTitle}>Проекты</h2> 
             {isFetching ?' Загрузка...' :
             allProjects.map((elem)=>
-            <div className={s.project} onClick={()=>setClick(elem.id)}>
+            <div key={elem.id} className={s.project} onClick={()=>setClick(elem.id)}>
             <div className={s.title}>
               {elem.title}
             </div>
             <div className={s.mainP}>
-                Руководитель
+                Руководитель: {' '}
+                {JSON.stringify(allWorkers) !== '[]' &&
+                <span>
+               { allWorkers.find(worker=>worker.id === elem.leaderId).name} {' '}
+               { allWorkers.find(worker=>worker.id === elem.leaderId).surename}
+                </span>
+}
             </div>
         </div>
             )
@@ -43,7 +53,8 @@ const mapStateToProps = (state) => ({
     position:state.AuthReducer.position,
     name:state.AuthReducer.name,
     allProjects:state.AdminReducer.allProjects,
+    allWorkers:state.AdminReducer.allWorkers,
     isFetching:state.AdminReducer.isFetching
 })
 
-export default connect(mapStateToProps, {allProjectsRequest})(AllProjects)
+export default connect(mapStateToProps, {allProjectsRequest,SetLogOut,allWorkersRequest})(AllProjects)

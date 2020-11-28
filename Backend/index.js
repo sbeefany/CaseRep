@@ -2,7 +2,7 @@ const createError = require('http-errors')
 const HTTPStatuses = require('statuses')
 var cors = require('cors')
 
-//Позиция 1-Системный аналитик 2- Разработчик 3-Проектировщик БД 4-Менеджер
+//Позиция 1-Управляющий 2- Руководитель 3-Сотрудник
 class Worker {
     constructor (id, name, surename, login, password, position, sallary, projects) {
       this.id = id
@@ -44,10 +44,12 @@ const bodyParser = require('body-parser')
 
 const app = express()
 
+app.use(cors())
+
 const mockWorkers = [new Worker(1,"Vlada","Aleksenko","Vlada","Vlada",1,0,[]),
 new Worker(2,"Egor","Alexandrov","Egor","Egor",2,0,[]),
 new Worker(3,"Eduard","Pahomov","Eduard","Eduard",3,0,[]),
-new Worker(4,"Sasha","Blinov","Sasha","Sasha",4 ,1000),[]]
+new Worker(4,"Sasha","Blinov","Sasha","Sasha",3 ,1000),[]]
 
 const mockTasks=[new Task(123,"Title","HERE THERE IS A LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG DISCRIPTION",100,"3",1),
 new Task(124,"Title","HERE THERE IS A small DISCRIPTION",120,2),

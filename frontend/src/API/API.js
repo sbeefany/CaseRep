@@ -17,6 +17,18 @@ export const MainAPI = {
       .then(response => {
         return response.data
       })
-  }
+  },
+  takeAllWorkers(){
+    return axios.get(`http://localhost:9000/workers`)
+      .then(response => {
+        return response.data
+      })
+  },
+  takeCurrentProject(id){
+    return axios.get(`http://localhost:9000/projects/${id}`)
+      .then(response => {
+        return response.data
+      })
+  },
 }
  

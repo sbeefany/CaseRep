@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Project from './Projects/components/Project/Project';
-import Projects from './Projects/Projects';
+import Projects from './Pages/PageForAdmin/Projects';
+import CurrentProject from './Pages/PageForWorkerAMain/CurrentProject';
 
 class PageResolver extends React.Component {
   getUserStartPage = (role) => {
      if (role === 1) return <Projects/>;
-     if ((role === 2) || (role === 3)) return <Project/>
+     if ((role === 2) || (role === 3)) return <CurrentProject/>
   };
 
   render() {
