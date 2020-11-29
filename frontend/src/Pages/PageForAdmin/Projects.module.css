@@ -1,8 +1,10 @@
 .container{
     display: flex;
     flex-wrap: wrap;
-    width: 100vw;
+    width: 98vw;
     height: 100vh;
+    max-height: 100vh;
+    max-width: 98vw;
 }
 .allProjectsContainer{
     width: 30%;

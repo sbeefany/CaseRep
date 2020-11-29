@@ -30,5 +30,17 @@ export const MainAPI = {
         return response.data
       })
   },
+  getProjectTasks(id){
+    return axios.get(`http://localhost:9000/projects/${id}/tasks`)
+      .then(response => {
+        return response.data
+      })
+  },
+  getMyTasks(id){
+    return axios.get(`http://localhost:9000/workers/${id}/tasks`)
+      .then(response => {
+        return response.data
+      })
+  },
 }
  

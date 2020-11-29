@@ -4,14 +4,17 @@ import s from './Tasks.module.css'
 
 const Tasks = (props) => {
 
-    const { tasks, allWorkers } = props;
+    const { tasks, allWorkers,title,position } = props;
 
     return (
-        <div>
+        <>
             <div className={s.header}>
-                <h1 className={s.title}>Задачи проекта</h1>
+                <h1 className={s.title}>{title}</h1>
+                {title === 'Задачи проекта' && position === 2 ? 
                 <button>Создать</button>
+                    : ''}
             </div>
+            <div className={s.scroll}>
             <table className={s.table}>
                 <thead>
                     <tr>
@@ -31,8 +34,8 @@ const Tasks = (props) => {
                                 <td className={s.td1}>{key + 1}</td>
                                 <td className={s.td2}>{elem.title}</td>
                                 <td className={s.td3}>{elem.status === 1 ? 'Выполнено' : 'Не выполнено'}</td>
-                                <td className={s.td3}>{allWorkers.find(worker => worker.id === +elem.author).name} {' '}
-                                    {allWorkers.find(worker => worker.id === +elem.author).surename}</td>
+                                <td className={s.td3}>{allWorkers.find(worker => worker.id === +elem.authorId).name} {' '}
+                                    {allWorkers.find(worker => worker.id === +elem.authorId).surename}</td>
                                 <td className={s.td3}>{elem.weight}</td>
                                 <td className={s.td4}></td>
                                 <td className={s.td4}></td>
@@ -40,12 +43,14 @@ const Tasks = (props) => {
                     })}
                 </tbody>
             </table>
-        </div>
+            </div>
+        </>
     )
 }
 
 const mapStateToProps = (state) => ({
     allWorkers: state.AdminReducer.allWorkers,
+    position:state.AuthReducer.position
 })
 
 export default connect(mapStateToProps)(Tasks)

@@ -9,6 +9,12 @@
     width: 100%;
     text-align: center;
 }
+.scroll{
+    scrollbar-color: #f5f5f5;
+    scrollbar-width: thin;
+    overflow-y: scroll;
+    height: 80%;
+}
 
 .tr td {
     border: none;

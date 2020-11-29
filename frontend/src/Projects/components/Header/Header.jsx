@@ -1,18 +1,19 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import s from './Header.module.css';
-import {projectRequest} from '../../../redux/Reducers/WorkerReducer';
+import {projectRequest,getMyTasksRequest} from '../../../redux/Reducers/WorkerReducer';
 import {allWorkersRequest} from '../../../redux/Reducers/AdminReducer';
 import {SetLogOut} from '../../../redux/Reducers/AuthReducer'
 
 const Header = (props) => {
 
-    const {projectRequest,allWorkersRequest,name,surename,position,SetLogOut} = props;
+    const {projectRequest,allWorkersRequest,name,surename,position,SetLogOut,getMyTasksRequest,id} = props;
 
     useEffect(()=>{
             projectRequest();
             allWorkersRequest();
-    },[allWorkersRequest,projectRequest])
+            getMyTasksRequest(id)
+    },[allWorkersRequest,projectRequest,getMyTasksRequest,id])
     return (
         <div className = {s.container}>
              <div>
@@ -30,6 +31,7 @@ const Header = (props) => {
 const mapStateToProps = (state) => ({
     name:state.AuthReducer.name,
     surename:state.AuthReducer.surename,
-    position:state.AuthReducer.position
+    position:state.AuthReducer.position,
+    id:state.AuthReducer.id
 })
-export default connect(mapStateToProps, {allWorkersRequest, projectRequest,SetLogOut}) (Header)
+export default connect(mapStateToProps, {allWorkersRequest, projectRequest,SetLogOut,getMyTasksRequest}) (Header)

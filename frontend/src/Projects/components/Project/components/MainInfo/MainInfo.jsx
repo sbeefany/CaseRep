@@ -2,9 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import s from './MainInfo.module.css'
 
-const MainInfo = ({curentProjectRender,allWorkers,position,sallary}) => {
+const MainInfo = ({curentProjectRender,allWorkers,position,sallary,myTasks,projectTasks}) => {
+
     return (
-        <>
+        <div className={s.container}>
+            <div className={s.infoContainer}>
             <h1 className={s.title}>Общая информация</h1>
                         <table>
                             <tbody>
@@ -29,15 +31,42 @@ const MainInfo = ({curentProjectRender,allWorkers,position,sallary}) => {
                                 <td>Стоимость проекта:</td>
                                 <td>{curentProjectRender.costs}</td>
                                 </tr>
+                                {position !== 1 &&
+                                <tr>
+                                <td>Мой ежемесячный оклад:</td>
+                                <td>{sallary}</td>
+                                </tr>
+}
                                 {position !== 1 ?
+                                position === 2 ?
                                 <tr>
                                     <td>Моя процентная доля</td>
-                                    <td>{sallary}</td>
+                                    <td>20% от стоимости проекта</td>
+                                </tr>
+                                : 
+                                <tr>
+                                    <td>Моя процентная доля</td>
+                                    <td>{Math.floor(myTasks.reduce((previousValue,currentValue)=>{return previousValue.weight + currentValue.weight})/
+                                     projectTasks.reduce((previousValue,currentValue)=>{return previousValue + currentValue.weight},0)*0.8 * 100)}%</td>
                                 </tr>
                                 : ''}
                             </tbody>
                         </table>
-        </>
+                        </div>
+                        <div className={s.sallaryContainer}>
+                            {position === 3 ? 
+                                       <div> Мои баллы: {myTasks.reduce((previousValue,currentValue)=>{return previousValue.weight + currentValue.weight})} {' '}
+                                       из {projectTasks.reduce((previousValue,currentValue)=>{return previousValue + currentValue.weight},0)}
+                                       </div>
+                            :''}
+                            
+                            <div className={position === 1 && s.opacity}>Мое текущее вознограждение по окончанию проекта: <br/> {position === 2 ? curentProjectRender.costs * 0.8 + ' ' + 'руб' :
+                            position === 3 ?
+                             Math.floor((curentProjectRender.costs*0.8)/
+                             projectTasks.reduce((previousValue,currentValue)=>{return previousValue + currentValue.weight},0)*
+                             myTasks.reduce((previousValue,currentValue)=>{return previousValue.weight + currentValue.weight})) + ' ' + 'руб': ''}</div> 
+                        </div>
+        </div>
     )
 }
 

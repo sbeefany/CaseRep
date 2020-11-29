@@ -6,8 +6,10 @@ import Tasks from './components/Tasks/Tasks';
 
 const Project = (props) => {
 
-    const {idAdmin, allProjects,currentProject,id} = props;
+    const {idAdmin, allProjects,currentProject,projectTasks,myTasks,position} = props;
 
+
+    
     const findCurrentProject = ()=> {
         if (idAdmin && JSON.stringify(allProjects) !== '[]'){
             return allProjects.find(elem=>elem.id === idAdmin)
@@ -16,20 +18,27 @@ const Project = (props) => {
             return currentProject
         }
     }
+    
 
     const curentProjectRender = findCurrentProject();
 
-    console.log(curentProjectRender)
+
+    
     return (
         <div className = {s.container}>
             <div className={s.contentContainer}>
                
                 <div className={s.contentWrapper}> 
                     <div className={s.publicInfo}>
-                     <MainInfo curentProjectRender={curentProjectRender}/>
+                     <MainInfo myTasks={myTasks} projectTasks={projectTasks} curentProjectRender = {curentProjectRender}/>
                     </div>  
+                    {position === 3 ?
+                    <div className={s.myTasks}>
+                        <Tasks tasks = {myTasks} title = {'Мои задачи'}/>
+                    </div>
+                        : ''}
                     <div className={s.tasks}>
-                        <Tasks tasks = {curentProjectRender.tasks}/>
+                        <Tasks tasks = {projectTasks} title = {'Задачи проекта'}/>
                 </div>
                 </div>
             </div>
@@ -40,7 +49,10 @@ const Project = (props) => {
 const mapStateToProps = (state) => ({
     allProjects:state.AdminReducer.allProjects,
     currentProject:state.WorkerReducer.currentProject,
-    id:state.AuthReducer.id
+    id:state.AuthReducer.id,
+    projectTasks:state.WorkerReducer.projectTasks,
+    myTasks:state.WorkerReducer.myTasks,
+    position:state.AuthReducer.position
 })
 
 export default connect(mapStateToProps)(Project)

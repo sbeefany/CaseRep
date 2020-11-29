@@ -1,5 +1,6 @@
 .container{
     width: 100vw;
+    max-width: 98.5vw;
     height: 100vh;
 }
 .headerContainer{
