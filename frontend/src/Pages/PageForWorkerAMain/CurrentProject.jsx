@@ -7,7 +7,7 @@ const CurrentProject = () => {
 
     const [time, setTime] = useState(0)
 
-    setTimeout(()=>setTime(1), 1000)
+    setTimeout(()=>setTime(1), 200)
     return (
         <div className={s.container}>
             <div className={s.headerContainer}>

@@ -4,14 +4,14 @@ import s from './Tasks.module.css'
 
 const Tasks = (props) => {
 
-    const { tasks, allWorkers,title,position } = props;
+    const { tasks, allWorkers,title,position,setNewTask } = props;
 
     return (
         <>
             <div className={s.header}>
                 <h1 className={s.title}>{title}</h1>
                 {title === 'Задачи проекта' && position === 2 ? 
-                <button>Создать</button>
+                <button onClick={()=>setNewTask(true)}>Создать</button>
                     : ''}
             </div>
             <div className={s.scroll}>

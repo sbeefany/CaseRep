@@ -29,14 +29,9 @@ const MainInfo = ({curentProjectRender,allWorkers,position,sallary,myTasks,proje
                                 </tr>
                                 <tr>
                                 <td>Стоимость проекта:</td>
-                                <td>{curentProjectRender.costs}</td>
+                                <td>{curentProjectRender.costs} руб</td>
                                 </tr>
-                                {position !== 1 &&
-                                <tr>
-                                <td>Мой ежемесячный оклад:</td>
-                                <td>{sallary}</td>
-                                </tr>
-}
+                        
                                 {position !== 1 ?
                                 position === 2 ?
                                 <tr>
