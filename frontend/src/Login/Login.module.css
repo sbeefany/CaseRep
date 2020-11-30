@@ -67,5 +67,6 @@ button{
 .error{
     color: #ff4a2b;
     position: relative;
-    top:15%;
+    top:20px;
+
 }

@@ -27,7 +27,7 @@ const Projects = (props) => {
             {isClickNext !== -1 ?
             isFetching ? 'Загрузка...' :
             <Project idAdmin = {isClickNext}/> :
-             'Выберите проект'}
+             <div className={s.default}>Выберите проект</div>}
             </div>
           
         </div>

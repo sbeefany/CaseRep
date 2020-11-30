@@ -7,10 +7,10 @@ import {SetLogOut} from '../../../redux/Reducers/AuthReducer'
 
 const Header = (props) => {
 
-    const {projectRequest,allWorkersRequest,name,surename,position,SetLogOut,getMyTasksRequest,id} = props;
+    const {projectRequest,allWorkersRequest,name,surename,position,SetLogOut,getMyTasksRequest,id,projectId} = props;
 
     useEffect(()=>{
-            projectRequest();
+            projectRequest(projectId);
             allWorkersRequest();
             getMyTasksRequest(id)
     },[allWorkersRequest,projectRequest,getMyTasksRequest,id])
@@ -32,6 +32,7 @@ const mapStateToProps = (state) => ({
     name:state.AuthReducer.name,
     surename:state.AuthReducer.surename,
     position:state.AuthReducer.position,
-    id:state.AuthReducer.id
+    id:state.AuthReducer.id,
+    projectId:state.AuthReducer.projectId
 })
 export default connect(mapStateToProps, {allWorkersRequest, projectRequest,SetLogOut,getMyTasksRequest}) (Header)

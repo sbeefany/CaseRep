@@ -24,17 +24,16 @@ const Login = (props) => {
             <input placeholder = 'Логин' value = {login} onChange = {inputLoginInfo}/><br/>
             <input placeholder = 'Пароль' type ='password' value = {password} onChange = {inputPasswordInfo}/>
             <button onClick={()=>props.loginRequest(login,password)}>Войти</button>
+            {props.isError ? <div className = {s.error}>{'Неправильно введен пароль'}</div>:''}     
+            </div>      
             </div>
-           
-                           
-            </div>
-            {props.loginError !=='' ? <div className = {s.error}>{props.loginError}</div>:''}
         </div>
     )
 }
 
 const mapStateToProps = (state) => ({
-    isAuth:state.AuthReducer.isAuth
+    isAuth:state.AuthReducer.isAuth,
+    isError:state.AuthReducer.isError
 })
 
 export default connect(mapStateToProps, {loginRequest})(Login)

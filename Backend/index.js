@@ -72,7 +72,7 @@ new Project(224,"ProjectTitle3",2,new Date,new Date,15750000),
 new Project(225,"ProjectTitle4",2,new Date,new Date,15750000)]
 
 const mockWorkers = [new Worker(1,"Vlada","Aleksenko","Vlada","Vlada",1,0,-1),
-new Worker(2,"Egor","Alexandrov","Egor","Egor",2,0,222),
+new Worker(2,"Egor","Alexandrov","Egor","Egor",2,1500,222),
 new Worker(3,"Eduard","Pahomov","Eduard","Eduard",3,0,222),
 new Worker(4,"Sasha","Blinov","Login1","Login1",1 ,1000,-1),
 new Worker(5,"Sasha","Egorov","Login2","Login2",3 ,800,223),

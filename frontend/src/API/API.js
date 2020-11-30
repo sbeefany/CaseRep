@@ -24,8 +24,8 @@ export const MainAPI = {
         return response.data
       })
   },
-  takeCurrentProject(){
-    return axios.get(`http://localhost:9000/projects/${'222'}`)
+  takeCurrentProject(projectId){
+    return axios.get(`http://localhost:9000/projects/${projectId}`)
       .then(response => {
         return response.data
       })

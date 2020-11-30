@@ -40,13 +40,13 @@ const MainInfo = ({curentProjectRender,allWorkers,position,sallary,myTasks,proje
                                 {position !== 1 ?
                                 position === 2 ?
                                 <tr>
-                                    <td>Моя процентная доля</td>
+                                    <td>Моя процентная доля:</td>
                                     <td>20% от стоимости проекта</td>
                                 </tr>
                                 : 
                                 <tr>
                                     <td>Моя процентная доля</td>
-                                    <td>{Math.floor(myTasks.reduce((previousValue,currentValue)=>{return previousValue.weight + currentValue.weight})/
+                                    <td>{Math.floor(myTasks.reduce((previousValue,currentValue)=>{return previousValue + currentValue.weight},0)/
                                      projectTasks.reduce((previousValue,currentValue)=>{return previousValue + currentValue.weight},0)*0.8 * 100)}%</td>
                                 </tr>
                                 : ''}
@@ -55,16 +55,16 @@ const MainInfo = ({curentProjectRender,allWorkers,position,sallary,myTasks,proje
                         </div>
                         <div className={s.sallaryContainer}>
                             {position === 3 ? 
-                                       <div> Мои баллы: {myTasks.reduce((previousValue,currentValue)=>{return previousValue.weight + currentValue.weight})} {' '}
+                                       <div> Мои баллы: {myTasks.reduce((previousValue,currentValue)=>{return previousValue + currentValue.weight},0)} {' '}
                                        из {projectTasks.reduce((previousValue,currentValue)=>{return previousValue + currentValue.weight},0)}
                                        </div>
                             :''}
                             
-                            <div className={position === 1 && s.opacity}>Мое текущее вознограждение по окончанию проекта: <br/> {position === 2 ? curentProjectRender.costs * 0.8 + ' ' + 'руб' :
+                            <div className={position === 1 && s.opacity}>Мое текущее вознаграждение по окончанию проекта: <br/> {position === 2 ? curentProjectRender.costs * 0.8 + ' ' + 'руб' :
                             position === 3 ?
                              Math.floor((curentProjectRender.costs*0.8)/
                              projectTasks.reduce((previousValue,currentValue)=>{return previousValue + currentValue.weight},0)*
-                             myTasks.reduce((previousValue,currentValue)=>{return previousValue.weight + currentValue.weight})) + ' ' + 'руб': ''}</div> 
+                             myTasks.reduce((previousValue,currentValue)=>{return previousValue + currentValue.weight},0)) + ' ' + 'руб': ''}</div> 
                         </div>
         </div>
     )

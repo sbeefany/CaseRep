@@ -60,10 +60,10 @@ async (dispatch) => {
         dispatch(setFetching(false))
 }
 
-export const projectRequest = () =>
+export const projectRequest = (projectId) =>
     async (dispatch) => {
         dispatch(setFetching(true))
-        let response = await MainAPI.takeCurrentProject();
+        let response = await MainAPI.takeCurrentProject(projectId);
             dispatch(SetProject(response));
             dispatch(getProjectTasksRequest(response.id))
             dispatch(setFetching(false))        
