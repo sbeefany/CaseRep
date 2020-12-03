@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import s from './Project.module.css';
 import MainInfo from './components/MainInfo/MainInfo';
 import Tasks from './components/Tasks/Tasks';
+import Diagramm from './components/Diagramm/Diagramm';
 
 const Project = (props) => {
 
@@ -96,6 +97,7 @@ const workersForShow = allWorkers.filter(elem => elem.position === 3)
                 </div>
             </div>
         :''}
+        <Diagramm  tasks = {projectTasks}/>
         </div>
     )
 }

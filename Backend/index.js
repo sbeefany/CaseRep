@@ -26,7 +26,7 @@ class Worker {
           this.costs=costs
       }
   }
-  //1- СОЗДАНО 2 - В ПРОЦЕССЕ 3-ЗАВЕРШЕНО 
+  //1- СОЗДАНО 2- ЗАВЕРШЕНО 
   class Task {
       constructor (id, title, discription, weight,authorId,status,projectId) {
           this.id = id
@@ -49,22 +49,22 @@ const mockTasks=[new Task(123,"Title","HERE THERE IS A LOOOOOOOOOOOOOOOOOOOOOOOO
 new Task(124,"Title","HERE THERE IS A small DISCRIPTION",120,2,1,222),
 new Task(125,"Title2","HERE THERE IS A DISCRIPTION",20,3,1,222),
 new Task(126,"Title3"," REGOR RIS RLOH",10,3,1,222),
-new Task(127,"Title4","mOCK PROJECT",90,5,1,223),
-new Task(128,"Title3"," REGOR RIS RLOH",10,6,1,223),
-new Task(129,"Title4","mOCK PROJECT",90,6,1,223),
+new Task(127,"Title4","mOCK PROJECT",90,5,2,223),
+new Task(128,"Title3"," REGOR RIS RLOH",10,6,2,223),
+new Task(129,"Title4","mOCK PROJECT",90,6,2,223),
 new Task(130,"Title3"," REGOR RIS RLOH",10,5,1,223),
 new Task(131,"Title4","mOCK PROJECT",90,5,1,223),
-new Task(132,"Title3"," REGOR RIS RLOH",10,7,1,224),
+new Task(132,"Title3"," REGOR RIS RLOH",10,7,2,224),
 new Task(133,"Title4","mOCK PROJECT",90,7,1,224),
 new Task(134,"Title3"," REGOR RIS RLOH",10,7,1,224),
-new Task(135,"Title4","mOCK PROJECT",90,8,1,224),
+new Task(135,"Title4","mOCK PROJECT",90,8,2,224),
 new Task(136,"Title4","mOCK PROJECT",90,8,1,224),
-new Task(137,"Title3"," REGOR RIS RLOH",10,9,1,224),
+new Task(137,"Title3"," REGOR RIS RLOH",10,9,2,224),
 new Task(138,"Title4","mOCK PROJECT",90,7,1,224),
 new Task(139,"Title3"," REGOR RIS RLOH",10,8,1,224),
-new Task(140,"Title4","mOCK PROJECT",90,9,1,224),
+new Task(140,"Title4","mOCK PROJECT",90,9,2,224),
 new Task(141,"Title3"," REGOR RIS RLOH",10,9,1,224),
-new Task(142,"Title4","mOCK PROJECT",90,9,1,224)]
+new Task(142,"Title4","mOCK PROJECT",90,9,2,224)]
 
 const mockProjects = [new Project(222,"ProjectTitle",2,new Date,new Date,15750000),
 new Project(223,"ProjectTitle2",2,new Date,new Date,15750000),
