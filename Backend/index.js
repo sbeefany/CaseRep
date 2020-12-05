@@ -20,7 +20,7 @@ class Worker {
       if(arguments.length === 6){
         this.id = arguments[0]
         this.title = arguments[1]
-        this.leaderId=arguments[2]
+        this.leaderId = arguments[2]
         this.theBeginingDate=arguments[3]
         this.theEndDate=arguments[4]
         this.costs=arguments[5]
