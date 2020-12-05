@@ -15,29 +15,60 @@ class Worker {
       this.projectId = projectId
     }
   }
-  
-  class Project {
-      constructor (id, title,leaderId,theBeginingDate,theEndDate,costs) {
-          this.id = id
-          this.title = title
-          this.leaderId=leaderId
-          this.theBeginingDate=theBeginingDate
-          this.theEndDate=theEndDate
-          this.costs=costs
+
+  function Project() {
+      if(arguments.length === 6){
+        this.id = arguments[0]
+        this.title = arguments[1]
+        this.leaderId=arguments[2]
+        this.theBeginingDate=arguments[3]
+        this.theEndDate=arguments[4]
+        this.costs=arguments[5]
+      }else{
+         var projectDTO = arguments[0]
+        this.id = Math.floor(Math.random()*Math.floor(100000))
+        console.log(this.id)
+        this.title = projectDTO.title
+        this.leaderId=projectDTO.leaderId
+        this.theBeginingDate=projectDTO.theBeginingDate
+        this.theEndDate=projectDTO.theEndDate
+        this.costs=projectDTO.costs
       }
-  }
+    
+
+    return this
+}
   //1- СОЗДАНО 2- ЗАВЕРШЕНО 
-  class Task {
-      constructor (id, title, discription, weight,authorId,status,projectId) {
-          this.id = id
-          this.title = title
-          this.discription = discription
-          this.weight = weight
-          this.authorId = authorId
-          this.status = status
-          this.projectId = projectId
-      }
-  }
+  
+  function Task() {
+    if(arguments.length === 9){
+      this.id = arguments[0]
+      this.title = arguments[1]
+      this.discription=arguments[2]
+      this.weight=arguments[3]
+      this.authorId=arguments[4]
+      this.status=arguments[5]
+      this.projectId = arguments[6]
+      this.theBeginingDate=arguments[7]
+        this.theEndDate=arguments[8]
+    }else{
+        var taskDTO = arguments[0]
+      this.id = Math.floor(Math.random()*Math.floor(100000))
+      console.log(this.id)
+      this.title = taskDTO.title
+      this.discription=taskDTO.discription
+      this.weight=taskDTO.weight
+      this.authorId=taskDTO.authorId
+      this.status=taskDTO.status
+      this.projectId = taskDTO.projectId
+      this.theBeginingDate=taskDTO.theBeginingDate
+        this.theEndDate=taskDTO.theEndDate
+    }
+  
+
+  return this
+}
+
 const express = require('express')
 const bodyParser = require('body-parser')
 
@@ -45,26 +76,26 @@ const app = express()
 
 app.use(cors())
 
-const mockTasks=[new Task(123,"Title","HERE THERE IS A LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG DISCRIPTION",100,2,1,222),
-new Task(124,"Title","HERE THERE IS A small DISCRIPTION",120,2,1,222),
-new Task(125,"Title2","HERE THERE IS A DISCRIPTION",20,3,1,222),
-new Task(126,"Title3"," REGOR RIS RLOH",10,3,1,222),
-new Task(127,"Title4","mOCK PROJECT",90,5,2,223),
-new Task(128,"Title3"," REGOR RIS RLOH",10,6,2,223),
-new Task(129,"Title4","mOCK PROJECT",90,6,2,223),
-new Task(130,"Title3"," REGOR RIS RLOH",10,5,1,223),
-new Task(131,"Title4","mOCK PROJECT",90,5,1,223),
-new Task(132,"Title3"," REGOR RIS RLOH",10,7,2,224),
-new Task(133,"Title4","mOCK PROJECT",90,7,1,224),
-new Task(134,"Title3"," REGOR RIS RLOH",10,7,1,224),
-new Task(135,"Title4","mOCK PROJECT",90,8,2,224),
-new Task(136,"Title4","mOCK PROJECT",90,8,1,224),
-new Task(137,"Title3"," REGOR RIS RLOH",10,9,2,224),
-new Task(138,"Title4","mOCK PROJECT",90,7,1,224),
-new Task(139,"Title3"," REGOR RIS RLOH",10,8,1,224),
-new Task(140,"Title4","mOCK PROJECT",90,9,2,224),
-new Task(141,"Title3"," REGOR RIS RLOH",10,9,1,224),
-new Task(142,"Title4","mOCK PROJECT",90,9,2,224)]
+const mockTasks=[new Task(123,"Title","HERE THERE IS A LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG DISCRIPTION",100,2,1,222,new Date,new Date),
+new Task(124,"Title","HERE THERE IS A small DISCRIPTION",120,2,1,222,new Date,new Date),
+new Task(125,"Title2","HERE THERE IS A DISCRIPTION",20,3,1,222,new Date,new Date),
+new Task(126,"Title3"," REGOR RIS RLOH",10,3,1,222,new Date,new Date),
+new Task(127,"Title4","mOCK PROJECT",90,5,2,223,new Date,new Date),
+new Task(128,"Title3"," REGOR RIS RLOH",10,6,2,223,new Date,new Date),
+new Task(129,"Title4","mOCK PROJECT",90,6,2,223,new Date,new Date),
+new Task(130,"Title3"," REGOR RIS RLOH",10,5,1,223,new Date,new Date),
+new Task(131,"Title4","mOCK PROJECT",90,5,1,223,new Date,new Date),
+new Task(132,"Title3"," REGOR RIS RLOH",10,7,2,224,new Date,new Date),
+new Task(133,"Title4","mOCK PROJECT",90,7,1,224,new Date,new Date),
+new Task(134,"Title3"," REGOR RIS RLOH",10,7,1,224,new Date,new Date),
+new Task(135,"Title4","mOCK PROJECT",90,8,2,224,new Date,new Date),
+new Task(136,"Title4","mOCK PROJECT",90,8,1,224,new Date,new Date),
+new Task(137,"Title3"," REGOR RIS RLOH",10,9,2,224,new Date,new Date),
+new Task(138,"Title4","mOCK PROJECT",90,7,1,224,new Date,new Date),
+new Task(139,"Title3"," REGOR RIS RLOH",10,8,1,224,new Date,new Date),
+new Task(140,"Title4","mOCK PROJECT",90,9,2,224,new Date,new Date),
+new Task(141,"Title3"," REGOR RIS RLOH",10,9,1,224,new Date,new Date),
+new Task(142,"Title4","mOCK PROJECT",90,9,2,224,new Date,new Date)]
 
 const mockProjects = [new Project(222,"ProjectTitle",2,new Date,new Date,15750000),
 new Project(223,"ProjectTitle2",2,new Date,new Date,15750000),
@@ -129,7 +160,7 @@ app.get("/projects/:id/tasks",(req,res)=>{
 //Добавление проекта
 app.post("/projects",(req,res) => {
     console.log(req.body)
-    mockProjects.push(req.body)
+    mockProjects.push(new Project(req.body))
     
     res.json(mockProjects)
 })
@@ -143,7 +174,7 @@ app.post("/registration",(req,res) => {
 //Добавление задания
 app.post("/tasks",(req,res) => {
     console.log(req.body)
-    mockTasks.push(req.body)
+    mockTasks.push(new Task(req.body))
     
     res.json(mockTasks)
 })
