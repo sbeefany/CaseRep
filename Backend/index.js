@@ -195,6 +195,58 @@ app.post("/authorization", (req,res)=>{
       
 })
 
+app.put("/tasks/:id",(req,res)=>{
+  var task = mockTasks.find(task=>task.id===+req.params.id)
+  var newData = req.body
+  if(newData.projectId){
+    task.projectId=newData.projectId}
+    if(newData.status){
+  task.status=newData.status}
+  if(newData.theBeginingDate){
+  task.theBeginingDate=newData.theBeginingDate}
+  if(newData.theEndDate){
+  task.theEndDate=newData.theEndDate}
+  if(newData.title){
+  task.title=newData.title}
+  if(newData.weight){
+  task.weight=newData.weight}
+  if(newData.discription){
+  task.discription = newData.discription}
+  if(newData.authorId){
+  task.authorId= newData.authorId}
+  res.json(task)
+})
+
+app.delete("/tasks/:id",(req,res)=>{
+  var index = mockTasks.findIndex(task=>task.id===+req.params.id)
+  mockTasks.splice(index,1)
+  res.json(mockTasks)
+})
+
+app.put("/projects/:id",(req,res)=>{
+  var project = mockProjects.find(project=>project.id===+req.params.id)
+  var newData = req.body
+  if(newData.title){
+    project.title =newData.title}
+  if(newData.leaderId){
+    project.leaderId =newData.leaderId}
+  if(newData.theBeginingDate){
+    project.theBeginingDate =newData.theBeginingDate}
+  if(newData.theEndDate){
+    project.theEndDate =newData.theEndDate}
+  if(newData.costs){
+    project.costs =newData.costs}
+    
+    
+  res.json(project)
+})
+
+app.delete("/projects/:id",(req,res)=>{
+  var index = mockProjects.findIndex(project=>project.id===+req.params.id)
+  mockProjects.splice(index,1)
+  res.json(mockProjects)
+})
+
 app.listen(9000)
 
 
