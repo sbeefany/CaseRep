@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Diagramm from '../Diagramm/Diagramm'
 import s from './MainInfo.module.css'
 
-const MainInfo = ({curentProjectRender,allWorkers,position,sallary,myTasks,projectTasks}) => {
+const MainInfo = ({curentProjectRender,allWorkers,position,tasks,myTasks,projectTasks}) => {
 
     return (
         <div className={s.container}>
@@ -36,13 +37,13 @@ const MainInfo = ({curentProjectRender,allWorkers,position,sallary,myTasks,proje
                                 position === 2 ?
                                 <tr>
                                     <td>Моя процентная доля:</td>
-                                    <td>20% от стоимости проекта</td>
+                                    <td>20% от стоимости проекта({curentProjectRender.costs * 0.8} руб)</td>
                                 </tr>
                                 : 
                                 <tr>
                                     <td>Моя процентная доля</td>
-                                    <td>{Math.floor(myTasks.reduce((previousValue,currentValue)=>{return previousValue + currentValue.weight},0)/
-                                     projectTasks.reduce((previousValue,currentValue)=>{return previousValue + currentValue.weight},0)*0.8 * 100)}%</td>
+                                    <td>{Math.floor(myTasks.reduce((previousValue,currentValue)=>{return +previousValue + +currentValue.weight},0)/
+                                     projectTasks.reduce((previousValue,currentValue)=>{return +previousValue + +currentValue.weight},0)*0.8 * 100)}%</td>
                                 </tr>
                                 : ''}
                             </tbody>
@@ -50,16 +51,19 @@ const MainInfo = ({curentProjectRender,allWorkers,position,sallary,myTasks,proje
                         </div>
                         <div className={s.sallaryContainer}>
                             {position === 3 ? 
-                                       <div> Мои баллы: {myTasks.reduce((previousValue,currentValue)=>{return previousValue + currentValue.weight},0)} {' '}
-                                       из {projectTasks.reduce((previousValue,currentValue)=>{return previousValue + currentValue.weight},0)}
+                                       <div> Мои баллы: {myTasks.reduce((previousValue,currentValue)=>{return +previousValue + +currentValue.weight},0)} {' '}
+                                       из {projectTasks.reduce((previousValue,currentValue)=>{return +previousValue + +currentValue.weight},0)}
                                        </div>
                             :''}
-                            
-                            <div className={position === 1 && s.opacity}>Мое текущее вознаграждение по окончанию проекта: <br/> {position === 2 ? curentProjectRender.costs * 0.8 + ' ' + 'руб' :
+                            {position !==3 &&   <div className={s.diagramm}> <Diagramm  tasks = {projectTasks}/> </div> }
+                            <div className={position !== 3 && s.opacity}>Мое текущее вознаграждение по окончанию проекта: <br/> {
                             position === 3 ?
                              Math.floor((curentProjectRender.costs*0.8)/
-                             projectTasks.reduce((previousValue,currentValue)=>{return previousValue + currentValue.weight},0)*
-                             myTasks.reduce((previousValue,currentValue)=>{return previousValue + currentValue.weight},0)) + ' ' + 'руб': ''}</div> 
+                             projectTasks.reduce((previousValue,currentValue)=>{return +previousValue + +currentValue.weight},0)*
+                             myTasks.reduce((previousValue,currentValue)=>{return +previousValue + +currentValue.weight},0)) + ' ' + 'руб': ''}</div> 
+                             {position === 3 &&
+                            <div> На данный момент один балл =  {Math.floor((curentProjectRender.costs*0.8)/
+                             projectTasks.reduce((previousValue,currentValue)=>{return +previousValue + +currentValue.weight},0))} руб </div>}
                         </div>
         </div>
     )

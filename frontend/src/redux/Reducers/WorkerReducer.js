@@ -78,4 +78,7 @@ async (dispatch) => {
         dispatch(setFetching(false))
 }
 
+export const createTask = (data) => async () => {
+    await MainAPI.createTask(data);
+}
 

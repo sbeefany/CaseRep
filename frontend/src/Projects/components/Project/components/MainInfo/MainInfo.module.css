@@ -37,3 +37,8 @@ td{
     font-size: 24px;
     font-weight: bold;
 }
+.diagramm{
+    position: relative;
+    top: 100px;
+    right: -50px;
+}

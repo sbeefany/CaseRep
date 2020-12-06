@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import s from './Project.module.css';
 import MainInfo from './components/MainInfo/MainInfo';
 import Tasks from './components/Tasks/Tasks';
-import Diagramm from './components/Diagramm/Diagramm';
+import AddTask from './components/AddTask/AddTask';
+
 
 const Project = (props) => {
 
@@ -11,29 +12,7 @@ const Project = (props) => {
 
     const [isAddTask, setNewTask] = useState(false);
 
-    const [isSelect, setSelect] = useState(false);
-
-    const [workerName, setWorkerName] = useState('')
-
-    const [title, setTitle] = useState('')
-
-    const onChangeSetTitle= (e) => {
-        setTitle(e.currentTarget.value)
-    }
-
-    const [descr, setDescr] = useState('')
-
-    const onChangeSetDescr= (e) => {
-        setDescr(e.currentTarget.value)
-    }
-
-    const [weight, setWeight] = useState('')
-
-    const onChangeSetWeight= (e) => {
-        setWeight(e.currentTarget.value)
-    }
-
-const workersForShow = allWorkers.filter(elem => elem.position === 3)
+    
     const findCurrentProject = ()=> {
         if (idAdmin && JSON.stringify(allProjects) !== '[]'){
             return allProjects.find(elem=>elem.id === idAdmin)
@@ -42,62 +21,30 @@ const workersForShow = allWorkers.filter(elem => elem.position === 3)
             return currentProject
         }
     }
-    
-    const handleChooseWorker = (name) => {
-        setWorkerName(name)
-        setSelect(false)
-    }
-
     const curentProjectRender = findCurrentProject();
+
     
     return (
         <div className = {s.container}>
             <div className={s.contentContainer}>
                 <div className={s.contentWrapper}> 
                     <div className={s.publicInfo}>
-                     <MainInfo myTasks={myTasks} projectTasks={projectTasks} curentProjectRender = {curentProjectRender}/>
+                     <MainInfo tasks = {projectTasks} myTasks={myTasks} projectTasks={projectTasks} curentProjectRender = {curentProjectRender}/>
                     </div>  
                     {position === 3 ?
                     <div className={s.myTasks}>
                         <Tasks tasks = {myTasks} title = {'Мои задачи'}/>
                     </div>
                         : ''}
-                    <div className={s.tasks}>
+                    <div className={s.tasks + ' ' + (position!==1 && s.taskPadding)}>
                         <Tasks setNewTask={setNewTask} tasks = {projectTasks} title = {'Задачи проекта'}/>
                 </div>
                 </div>
             </div>
             {isAddTask ? 
-            <div className={s.addTask}>
-                <div onClick={()=>setNewTask(false)} className={s.close}></div>
-                <div className={s.addTaskContent}>
-                    <h1 className={s.title}>Добавление задачи</h1>
-                    <div className={s.content}>
-                    <div>
-                        <span className={s.left}>Название</span> <input placeholder={'Название'} onChange={onChangeSetTitle} value={title}/>
-                    </div>
-                    <div>
-                        <span className={s.left}>Описание</span> <input placeholder={'Описание'} onChange={onChangeSetDescr} value={descr}/>
-                    </div>
-                    <div>
-                        <span className={s.left}>Вес задачи</span> <input placeholder={'Вес'} onChange={onChangeSetWeight} value={weight}/>
-                    </div>
-                    <div className= {s.author}>
-                        <span className={s.left}>Автор</span> 
-                        {workerName === '' ?  <div className={s.select} onClick={()=>setSelect(!isSelect)}>Выберите сотрудика</div> :
-                        <div className={s.select}  onClick={()=>setSelect(!isSelect)} >{workerName}</div>}
-                        <div className={s.selector}>
-                        {isSelect && workersForShow.map((elem)=>{
-                            return <div className={s.select1} onClick={()=>handleChooseWorker(elem.surename+ ' ' + elem.name)}>{elem.surename + ' ' + elem.name}</div>
-                        })}
-                        </div>
-                    </div>
-                    <button className={s.addBtn}>Добавить</button>
-                    </div>
-                </div>
-            </div>
-        :''}
-        <Diagramm  tasks = {projectTasks}/>
+            <AddTask id={curentProjectRender.id} setNewTask= {setNewTask}  allWorkers={allWorkers}/>
+            :''}
+       
         </div>
     )
 }

@@ -42,5 +42,11 @@ export const MainAPI = {
         return response.data
       })
   },
+  createTask(data){
+    return axios.post(`http://localhost:9000/tasks`, data)
+      .then(response => {
+        return response.data
+      })
+  },
 }
  
