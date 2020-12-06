@@ -29,7 +29,7 @@ const Project = (props) => {
             <div className={s.contentContainer}>
                 <div className={s.contentWrapper}> 
                     <div className={s.publicInfo}>
-                     <MainInfo tasks = {projectTasks} myTasks={myTasks} projectTasks={projectTasks} curentProjectRender = {curentProjectRender}/>
+                     <MainInfo projectId = {curentProjectRender.id} tasks = {projectTasks} myTasks={myTasks} projectTasks={projectTasks} curentProjectRender = {curentProjectRender}/>
                     </div>  
                     {position === 3 ?
                     <div className={s.myTasks}>
@@ -37,7 +37,7 @@ const Project = (props) => {
                     </div>
                         : ''}
                     <div className={s.tasks + ' ' + (position!==1 && s.taskPadding)}>
-                        <Tasks setNewTask={setNewTask} tasks = {projectTasks} title = {'Задачи проекта'}/>
+                        <Tasks  projectId = {curentProjectRender.id} setNewTask={setNewTask} tasks = {projectTasks} title = {'Задачи проекта'}/>
                 </div>
                 </div>
             </div>

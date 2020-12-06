@@ -82,3 +82,11 @@ export const createTask = (data) => async () => {
     await MainAPI.createTask(data);
 }
 
+export const updateTask = (id, data) => async () => {
+    await MainAPI.updateTask(id, data);
+}
+
+export const deleteTask = (id) => async () => {
+    await MainAPI.deleteTask(id);
+}
+

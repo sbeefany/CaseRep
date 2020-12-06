@@ -48,5 +48,17 @@ export const MainAPI = {
         return response.data
       })
   },
+  updateTask(id, data){
+    return axios.put(`http://localhost:9000/tasks/${id}`, data)
+      .then(response => {
+        return response.data
+      })
+  },
+  deleteTask(id){
+    return axios.delete(`http://localhost:9000/tasks/${id}`)
+      .then(response => {
+        return response.data
+      })
+  },
 }
  

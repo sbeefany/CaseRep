@@ -76,26 +76,24 @@ const app = express()
 
 app.use(cors())
 
-const mockTasks=[new Task(123,"Title","HERE THERE IS A LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG DISCRIPTION",100,2,1,222,new Date,new Date),
-new Task(124,"Title","HERE THERE IS A small DISCRIPTION",120,2,1,222,new Date,new Date),
-new Task(125,"Title2","HERE THERE IS A DISCRIPTION",20,3,1,222,new Date,new Date),
-new Task(126,"Title3"," REGOR RIS RLOH",10,3,1,222,new Date,new Date),
-new Task(127,"Title4","mOCK PROJECT",90,5,2,223,new Date,new Date),
-new Task(128,"Title3"," REGOR RIS RLOH",10,6,2,223,new Date,new Date),
-new Task(129,"Title4","mOCK PROJECT",90,6,2,223,new Date,new Date),
-new Task(130,"Title3"," REGOR RIS RLOH",10,5,1,223,new Date,new Date),
-new Task(131,"Title4","mOCK PROJECT",90,5,1,223,new Date,new Date),
-new Task(132,"Title3"," REGOR RIS RLOH",10,7,2,224,new Date,new Date),
-new Task(133,"Title4","mOCK PROJECT",90,7,1,224,new Date,new Date),
-new Task(134,"Title3"," REGOR RIS RLOH",10,7,1,224,new Date,new Date),
-new Task(135,"Title4","mOCK PROJECT",90,8,2,224,new Date,new Date),
-new Task(136,"Title4","mOCK PROJECT",90,8,1,224,new Date,new Date),
-new Task(137,"Title3"," REGOR RIS RLOH",10,9,2,224,new Date,new Date),
-new Task(138,"Title4","mOCK PROJECT",90,7,1,224,new Date,new Date),
-new Task(139,"Title3"," REGOR RIS RLOH",10,8,1,224,new Date,new Date),
-new Task(140,"Title4","mOCK PROJECT",90,9,2,224,new Date,new Date),
-new Task(141,"Title3"," REGOR RIS RLOH",10,9,1,224,new Date,new Date),
-new Task(142,"Title4","mOCK PROJECT",90,9,2,224,new Date,new Date)]
+const mockTasks=[new Task(123,"Project222","HERE THERE IS A LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG DISCRIPTION",100,4,0,222,new Date,new Date),
+new Task(124,"Project222","HERE THERE IS A small DISCRIPTION",120,3,1,222,new Date,new Date),
+new Task(125,"Project222","HERE THERE IS A DISCRIPTION",20,3,0,222,new Date,new Date),
+new Task(126,"Project222"," REGOR RIS RLOH",10,3,1,222,new Date,new Date),
+new Task(128,"Project223"," REGOR RIS RLOH",10,6,1,223,new Date,new Date),
+new Task(130,"Project223"," REGOR RIS RLOH",10,7,0,223,new Date,new Date),
+new Task(131,"Project223","mOCK PROJECT",90,6,1,223,new Date,new Date),
+new Task(132,"Project224"," REGOR RIS RLOH",10,9,0,224,new Date,new Date),
+new Task(133,"Project224","mOCK PROJECT",90,9,0,224,new Date,new Date),
+new Task(134,"Project224"," REGOR RIS RLOH",10,9,0,224,new Date,new Date),
+new Task(135,"Project224","mOCK PROJECT",90,9,1,224,new Date,new Date),
+new Task(136,"Project224","mOCK PROJECT",90,10,0,224,new Date,new Date),
+new Task(137,"Project224"," REGOR RIS RLOH",10,9,1,224,new Date,new Date),
+new Task(138,"Project224","mOCK PROJECT",90,10,1,224,new Date,new Date),
+new Task(139,"Project224"," REGOR RIS RLOH",10,9,0,224,new Date,new Date),
+new Task(140,"Project224","mOCK PROJECT",90,9,1,224,new Date,new Date),
+new Task(141,"Project224"," REGOR RIS RLOH",10,10,1,224,new Date,new Date),
+new Task(142,"Project224","mOCK PROJECT",90,10,0,224,new Date,new Date)]
 
 const mockProjects = [new Project(222,"ProjectTitle",2,new Date,new Date,15750000),
 new Project(223,"ProjectTitle2",2,new Date,new Date,15750000),
@@ -103,14 +101,15 @@ new Project(224,"ProjectTitle3",2,new Date,new Date,15750000),
 new Project(225,"ProjectTitle4",2,new Date,new Date,15750000)]
 
 const mockWorkers = [new Worker(1,"Vlada","Aleksenko","Vlada","Vlada",1,0,-1),
-new Worker(2,"Egor","Alexandrov","Egor","Egor",2,1500,222),
-new Worker(3,"Eduard","Pahomov","Eduard","Eduard",3,0,222),
-new Worker(4,"Sasha","Blinov","Login1","Login1",1 ,1000,-1),
-new Worker(5,"Sasha","Egorov","Login2","Login2",3 ,800,223),
-new Worker(6,"Vlada","Dreykova","Login3","Login3",3 ,1000,223),
-new Worker(7,"Ed","Gaponov","Login4","Login4",2 ,1000,224),
-new Worker(8,"Egor","Chuykov","Login5","Login5",3 ,1000,224),
-new Worker(9,"Vseman","Vasermanov","Login6","Login6",2 ,1000,224),]
+new Worker(2,"Egor","Alexandrov","Admin1","Admin1",2,1500,222),
+new Worker(3,"Eduard","Pahomov","Worker11","Worker11",3,0,222),
+new Worker(4,"Sasha","Blinov","Worker12","Worker12",3 ,1000,222),
+new Worker(5,"Sasha","Egorov","Admin2","Admin2",2 ,800,223),
+new Worker(6,"Vlada","Dreykova","Worker21","Worker21",3 ,1000,223),
+new Worker(7,"Ed","Gaponov","Worker22","Worker22",3 ,1000,223),
+new Worker(8,"Egor","Chuykov","Admin3","Admin3",2 ,1000,224),
+new Worker(9,"Vseman","Vasermanov","Worker31","Worker31",3 ,1000,224),
+new Worker(10,"Anton","Antonov","Worker32","Worker32",3 ,1000,224)]
 
 app.use(bodyParser.json())
 
@@ -200,7 +199,7 @@ app.put("/tasks/:id",(req,res)=>{
   var newData = req.body
   if(newData.projectId){
     task.projectId=newData.projectId}
-    if(newData.status){
+    if(newData.status !== undefined){
   task.status=newData.status}
   if(newData.theBeginingDate){
   task.theBeginingDate=newData.theBeginingDate}

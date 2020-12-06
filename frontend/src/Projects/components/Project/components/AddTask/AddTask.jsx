@@ -41,7 +41,7 @@ const AddTask = ({allWorkers,setNewTask,createTask,id,getProjectTasksRequest}) =
         setSelect(false)
     }
 
-    const workersForShow = allWorkers.filter(elem => elem.position === 3)
+    const workersForShow = allWorkers.filter(elem => elem.position === 3 && elem.projectId===id)
 
 
     const createNewTask=(title,descr, date, weight, workerName) => {
