@@ -35,6 +35,10 @@ const AddProject = ({setAddProject,allWorkers}) => {
         setWorkerName(name)
         setSelect(false)
     }
+    const handleChooseWorkers = (name) => {
+        setWorkerNames(name)
+        setSelect(false)
+    }
 
 
 
