@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import {allProjectsRequest, allWorkersRequest} from '../../../redux/Reducers/AdminReducer';
 import {SetLogOut} from '../../../redux/Reducers/AuthReducer'
+import AddProject from './AddProject/AddProject';
 import s from './AllProjects.module.css'
 
 const AllProjects = (props) => {
@@ -11,6 +12,8 @@ const AllProjects = (props) => {
         allProjectsRequest();
         allWorkersRequest();
     },[allWorkersRequest,allProjectsRequest])
+
+    const [isAddProject, setAddProject] = useState(false)
 
     return (
         <div className={s.container}>
@@ -43,7 +46,11 @@ const AllProjects = (props) => {
         </div>
             )
             }
+            <button onClick={()=>setAddProject(true)}>Новый проект</button>
             </div>
+            
+            {isAddProject &&  <AddProject setAddProject={setAddProject}/>}
+           
         </div>
     )
 }
