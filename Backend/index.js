@@ -101,15 +101,20 @@ new Project(224,"ProjectTitle3",2,new Date,new Date,15750000),
 new Project(225,"ProjectTitle4",2,new Date,new Date,15750000)]
 
 const mockWorkers = [new Worker(1,"Vlada","Aleksenko","Vlada","Vlada",1,0,-1),
-new Worker(2,"Egor","Alexandrov","Admin1","Admin1",2,1500,222),
-new Worker(3,"Eduard","Pahomov","Worker11","Worker11",3,0,222),
-new Worker(4,"Sasha","Blinov","Worker12","Worker12",3 ,1000,222),
-new Worker(5,"Sasha","Egorov","Admin2","Admin2",2 ,800,223),
-new Worker(6,"Vlada","Dreykova","Worker21","Worker21",3 ,1000,223),
-new Worker(7,"Ed","Gaponov","Worker22","Worker22",3 ,1000,223),
-new Worker(8,"Egor","Chuykov","Admin3","Admin3",2 ,1000,224),
-new Worker(9,"Vseman","Vasermanov","Worker31","Worker31",3 ,1000,224),
-new Worker(10,"Anton","Antonov","Worker32","Worker32",3 ,1000,224)]
+new Worker(2,"Egor","Alexandrov","Egor","Egor",2,1500,222),
+new Worker(3,"Eduard","Pahomov","Eduard","Eduard",3,0,222),
+new Worker(4,"Sasha","Blinov","Login1","Login1",1 ,1000,-1),
+new Worker(5,"Sasha","Egorov","Login2","Login2",3 ,800,223),
+new Worker(6,"Vlada","Dreykova","Login3","Login3",3 ,1000,223),
+new Worker(7,"Ed","Gaponov","Login4","Login4",2 ,1000,224),
+new Worker(8,"Egor","Chuykov","Login5","Login5",3 ,1000,224),
+new Worker(10,"Vseman","Vasermanov","Login6","Login6",2 ,1000,-2),
+new Worker(11,"Vseman2","Vasermanov2","Login7","Login7",2 ,1000,-2),
+new Worker(12,"Vseman3","Vasermanov3","Login8","Login8",2 ,1000,-2),
+new Worker(13,"Vseman4","Vasermanov4","Login9","Login9",2 ,1000,-2),
+new Worker(14,"Vseman5","Vasermanov5","Login10","Login10",2 ,1000,-2),
+new Worker(15,"Vseman6","Vasermanov6","Login11","Login11",2 ,1000,-2)
+]
 
 app.use(bodyParser.json())
 
@@ -136,11 +141,12 @@ app.get("/tasks/:id", (req,res) =>{
 })
 //Получения участников проекта
 app.get("/projects/workers/:id",(req,res)=>{
-    var project = mockProjects.find(project => project.id===+req.params.id)
     var workers =  mockWorkers.filter(
-      worker=> worker.projects.includes(project))
+      worker=> worker.projectId === +req.params.id)
     res.json(workers)
 })
+
+
 
 //Получение заданий конкретного работника
 app.get("/workers/:id/tasks",(req,res)=>{
@@ -162,6 +168,16 @@ app.post("/projects",(req,res) => {
     mockProjects.push(new Project(req.body))
     
     res.json(mockProjects)
+})
+
+app.post("/projects/:id/workers",(req,res) => {
+  console.log(req.body)
+  var workersId=req.body.workersId
+  workersId.forEach(workerId => {
+    var worker = mockWorkers.find(worker=>worker.id === +workerId)
+    worker.projectId=+req.params.id
+  });
+  res.json()
 })
 //Регистрация
 app.post("/registration",(req,res) => {
