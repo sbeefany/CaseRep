@@ -96,24 +96,23 @@ new Task(141,"Project224"," REGOR RIS RLOH",10,10,1,224,new Date,new Date),
 new Task(142,"Project224","mOCK PROJECT",90,10,0,224,new Date,new Date)]
 
 const mockProjects = [new Project(222,"ProjectTitle",2,new Date,new Date,15750000),
-new Project(223,"ProjectTitle2",2,new Date,new Date,15750000),
-new Project(224,"ProjectTitle3",2,new Date,new Date,15750000),
-new Project(225,"ProjectTitle4",2,new Date,new Date,15750000)]
+new Project(223,"ProjectTitle2",5,new Date,new Date,15750000),
+new Project(224,"ProjectTitle3",8,new Date,new Date,15750000)]
 
 const mockWorkers = [new Worker(1,"Vlada","Aleksenko","Vlada","Vlada",1,0,-1),
-new Worker(2,"Egor","Alexandrov","Egor","Egor",2,1500,222),
-new Worker(3,"Eduard","Pahomov","Eduard","Eduard",3,0,222),
-new Worker(4,"Sasha","Blinov","Login1","Login1",1 ,1000,-1),
-new Worker(5,"Sasha","Egorov","Login2","Login2",3 ,800,223),
-new Worker(6,"Vlada","Dreykova","Login3","Login3",3 ,1000,223),
-new Worker(7,"Ed","Gaponov","Login4","Login4",2 ,1000,224),
-new Worker(8,"Egor","Chuykov","Login5","Login5",3 ,1000,224),
-new Worker(10,"Vseman","Vasermanov","Login6","Login6",2 ,1000,-2),
-new Worker(11,"Vseman2","Vasermanov2","Login7","Login7",2 ,1000,-2),
-new Worker(12,"Vseman3","Vasermanov3","Login8","Login8",2 ,1000,-2),
-new Worker(13,"Vseman4","Vasermanov4","Login9","Login9",2 ,1000,-2),
-new Worker(14,"Vseman5","Vasermanov5","Login10","Login10",2 ,1000,-2),
-new Worker(15,"Vseman6","Vasermanov6","Login11","Login11",2 ,1000,-2)
+new Worker(2,"Egor","Alexandrov","Admin1","Admin1",2,1500,222),
+new Worker(3,"Eduard","Pahomov","Login11","Login11",3,0,222),
+new Worker(4,"Sasha","Blinov","Login12","Login112",3 ,1000,222),
+new Worker(5,"Sasha","Egorov","Admin2","Admin2",2 ,800,223),
+new Worker(6,"Vlada","Dreykova","Login21","Login21",3 ,1000,223),
+new Worker(7,"Ed","Gaponov","Login22","Login22",3 ,1000,223),
+new Worker(8,"Egor","Chuykov","Admin3","Admin3",2 ,1000,224),
+new Worker(9,"Vseman","Vasermanov","Login31","Login31",3 ,1000,224),
+new Worker(10,"Vseman2","Vasermanov2","Login32","Login32",3 ,1000,224),
+new Worker(11,"Vseman3","Vasermanov3","Login33","Login33",3 ,1000,224),
+new Worker(12,"Vseman4","Vasermanov4","Admin4","Admin4",2 ,1000,-2),
+new Worker(13,"Vseman5","Vasermanov5","Login41","Login41",3 ,1000,-2),
+new Worker(14,"Vseman6","Vasermanov6","Login42","Login42",3 ,1000,-2)
 ]
 
 app.use(bodyParser.json())
@@ -172,7 +171,7 @@ app.post("/projects",(req,res) => {
 
 app.post("/projects/:id/workers",(req,res) => {
   console.log(req.body)
-  var workersId=req.body.workersId
+  var workersId=req.body
   workersId.forEach(workerId => {
     var worker = mockWorkers.find(worker=>worker.id === +workerId)
     worker.projectId=+req.params.id

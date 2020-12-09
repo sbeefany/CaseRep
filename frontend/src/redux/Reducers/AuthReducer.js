@@ -59,7 +59,7 @@ export const loginRequest = (login, password) =>
     async (dispatch) => {
         try{
             let response = await MainAPI.login(login, password);
-            console.log(response)
+            
             dispatch(SetAuthCreation(response.name, response.id, response.surename,response.sallary,response.position,response.projectId, true))
         }
        

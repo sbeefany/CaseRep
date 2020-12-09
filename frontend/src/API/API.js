@@ -60,5 +60,17 @@ export const MainAPI = {
         return response.data
       })
   },
+  createProject(data){
+    return axios.post(`http://localhost:9000/projects`,data)
+      .then(response => {
+        return response.data
+      })
+  },
+  workersForProject(id,workers){
+    return axios.post(`http://localhost:9000/projects/${id}/workers`,workers)
+      .then(response => {
+        return response
+      })
+  },
 }
  

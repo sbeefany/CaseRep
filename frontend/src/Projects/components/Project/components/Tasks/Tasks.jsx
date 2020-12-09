@@ -32,7 +32,6 @@ const Tasks = (props) => {
     const [newStatus, setStatus] = useState(-1);
     
     const setNewStatus = (e) => {
-        console.log(e.currentTarget.value)
         setStatus(e.currentTarget.value === 'Выполнено' ? 1 : 0)
     }
 

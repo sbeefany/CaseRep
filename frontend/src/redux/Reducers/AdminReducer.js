@@ -56,6 +56,23 @@ export const allProjectsRequest = () =>
             dispatch(setFetching(false))
     }
 
+    export const workersForProjectReq = (id, workers) =>
+    async (dispatch) => {
+        dispatch(setFetching(true))
+       await MainAPI.workersForProject(id,workers);
+            dispatch(setFetching(false))
+    }
+
+    export const createProjectReq = (data,workers) =>
+    async (dispatch) => {
+        dispatch(setFetching(true))
+        let response = await MainAPI.createProject(data);
+            dispatch(workersForProjectReq(response, workers));
+            dispatch(setFetching(false))
+    }
+    
+
+
 
 
 

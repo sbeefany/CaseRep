@@ -42,6 +42,7 @@
     height: 80%;
     width: 70%;
     background-color: whitesmoke;
+    z-index: 20;
     top: 10%;
     left: 15%;
     border-radius: 25px;
@@ -103,7 +104,7 @@
 
 .select {
     cursor: pointer;
-    width: 464px;
+    width: 78%;
     height: 44px;
     border-radius: 25px;
     outline-style: none;
@@ -119,22 +120,39 @@
 .select1 {
     font-size: 20px;
     cursor: pointer;
-    width: 464px;
+    width: 360px;
     height: 44px;
     border-radius: 25px;
     outline-style: none;
     text-align: center;
     background-color: white;
     align-items: center;
-   
+    position: relative;
+    left: 120px;
+   top:-5px
 }
 .select1:hover{
     border: 1px solid black;
 }
 .author{
+    display: inline-flex;
+}
+.workers{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
+}
+.checkboxWrapper{
+    display: flex;
+  
+    flex-direction: column;
+}
+.checkboxContainer{
+    display: flex;
+    align-items: center;
+}
+.checkbox {
+    width: 30px;
+    height: 30px;
 }
 .selector{
     position: absolute;
@@ -148,6 +166,11 @@ input {
 
 .left {
     font-size: 20px;
+    width: 40%;
+  
+}
+.inputs{
+    width: 60% !important;
 }
 
 .addBtn {

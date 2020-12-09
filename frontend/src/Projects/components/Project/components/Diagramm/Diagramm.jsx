@@ -58,7 +58,7 @@ const Diagramm = (props) => {
     }
     return sum
   }
-  console.log(props.curentProjectRender)
+
   
     return (
       <div className="App">
