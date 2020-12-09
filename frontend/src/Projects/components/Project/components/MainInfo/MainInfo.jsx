@@ -60,9 +60,11 @@ const MainInfo = ({curentProjectRender,allWorkers,position,tasks,myTasks,project
                             position === 3 ?
                              Math.floor((curentProjectRender.costs*0.8)/
                              projectTasks.reduce((previousValue,currentValue)=>{return +previousValue + +currentValue.weight},0)*
-                             myTasks.reduce((previousValue,currentValue)=>{return +previousValue + +currentValue.weight},0)) + ' ' + 'руб': ''}</div> 
+                             myTasks.reduce((previousValue,currentValue)=>{return +previousValue + +currentValue.weight},0) || 0) + ' ' + 'руб': ''}</div> 
                              {position === 3 &&
                             <div> На данный момент один балл =  {Math.floor((curentProjectRender.costs*0.8)/
+                             projectTasks.reduce((previousValue,currentValue)=>{return +previousValue + +currentValue.weight},0)) === Infinity ? 0 : 
+                             Math.floor((curentProjectRender.costs*0.8)/
                              projectTasks.reduce((previousValue,currentValue)=>{return +previousValue + +currentValue.weight},0))} руб </div>}
                         </div>
         </div>

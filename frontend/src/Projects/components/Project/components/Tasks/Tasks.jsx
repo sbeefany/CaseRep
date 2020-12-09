@@ -35,6 +35,7 @@ const Tasks = (props) => {
         setStatus(e.currentTarget.value === 'Выполнено' ? 1 : 0)
     }
 
+    console.log(tasks)
 
     const handleUpdateTask = (projectId,id,newTitle,newTheEndDate,newStatus,newWeight,authorId)=> {
         let data = {};
@@ -73,7 +74,7 @@ const Tasks = (props) => {
     }
 
     return (
-        <>
+        <> 
             <div className={s.header}>
                 <h1 className={s.title}>{title}</h1>
                 {title === 'Задачи проекта' && position === 2 ? 
@@ -95,7 +96,7 @@ const Tasks = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {tasks.map((elem, key) => {
+                     {tasks.length === 0 ? <div className={s.noTasks}> Нет задач</div> : tasks.map((elem, key) => {
                         return (
                             <tr className={s.tr}>
                                 <td className={s.td1}>{key + 1}</td>
@@ -115,6 +116,8 @@ const Tasks = (props) => {
                 </tbody>
             </table>
             </div>
+            
+
         </>
     )
 }
