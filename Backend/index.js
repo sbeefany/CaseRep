@@ -165,9 +165,9 @@ app.get("/projects/:id/tasks",(req,res)=>{
 //Добавление проекта
 app.post("/projects",(req,res) => {
     console.log(req.body)
-    mockProjects.push(new Project(req.body))
-    
-    res.json(mockProjects)
+    var newProject = new Project(req.body)
+    mockProjects.push(newProject)
+    res.json(newProject.id)
 })
 
 app.post("/projects/:id/workers",(req,res) => {
