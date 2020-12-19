@@ -110,8 +110,8 @@ new Worker(8,"Egor","Chuykov","Admin3","Admin3",2 ,1000,224),
 new Worker(9,"Vseman","Vasermanov","Login31","Login31",3 ,1000,224),
 new Worker(10,"Vseman2","Vasermanov2","Login32","Login32",3 ,1000,224),
 new Worker(11,"Vseman3","Vasermanov3","Login33","Login33",3 ,1000,224),
-new Worker(12,"Vseman4","Vasermanov4","Admin4","Admin4",2 ,1000,-2),
-new Worker(13,"Vseman5","Vasermanov5","Login41","Login41",3 ,1000,-2),
+new Worker(12,"Ivanov4","Ivan4","Admin4","Admin4",2 ,1000,-2),
+new Worker(13,"Petrov5","Petrov5","Login41","Login41",3 ,1000,-2),
 new Worker(14,"Vseman6","Vasermanov6","Login42","Login42",3 ,1000,-2)
 ]
 

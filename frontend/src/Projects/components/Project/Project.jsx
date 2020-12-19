@@ -23,9 +23,12 @@ const Project = (props) => {
     }
     const curentProjectRender = findCurrentProject();
 
+    console.log(curentProjectRender)
+
     
     return (
         <div className = {s.container}>
+            {(!curentProjectRender) ? 'Проекта нет' :
             <div className={s.contentContainer}>
                 <div className={s.contentWrapper}> 
                     <div className={s.publicInfo}>
@@ -40,11 +43,12 @@ const Project = (props) => {
                         <Tasks  projectId = {curentProjectRender.id} setNewTask={setNewTask} tasks = {projectTasks} title = {'Задачи проекта'}/>
                 </div>
                 </div>
+              
             </div>
-            {isAddTask ? 
+            }
+              {isAddTask ? 
             <AddTask id={curentProjectRender.id} setNewTask= {setNewTask}  allWorkers={allWorkers}/>
             :''}
-       
         </div>
     )
 }
