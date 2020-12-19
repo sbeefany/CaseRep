@@ -99,7 +99,7 @@ const mockProjects = [new Project(222,"ProjectTitle",2,new Date,new Date,1575000
 new Project(223,"ProjectTitle2",5,new Date,new Date,15750000),
 new Project(224,"ProjectTitle3",8,new Date,new Date,15750000)]
 
-const mockWorkers = [new Worker(1,"Vlada","Aleksenko","Vlada","Vlada",1,0,-1),
+const mockWorkers = [new Worker(1,"Vlada","Aleksenko","MainAdmin","MainAdmin",1,0,-1),
 new Worker(2,"Egor","Alexandrov","Admin1","Admin1",2,1500,222),
 new Worker(3,"Eduard","Pahomov","Login11","Login11",3,0,222),
 new Worker(4,"Sasha","Blinov","Login12","Login112",3 ,1000,222),

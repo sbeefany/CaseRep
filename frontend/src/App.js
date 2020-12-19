@@ -1,10 +1,8 @@
-
 import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Login from './Login/Login';
 import PageResolver from './PageResolver';
-import AllProjects from './Projects/components/AllProjects/AllProjects';
-import Project from './Projects/components/Project/Project';
+
 
 function App() {
   return (
