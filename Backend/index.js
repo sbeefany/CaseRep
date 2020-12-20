@@ -1,6 +1,7 @@
 const createError = require('http-errors')
 const HTTPStatuses = require('statuses')
 var cors = require('cors')
+const PORT = process.env.PORT || 9000
 
 //Позиция 1-Управляющий 2- Руководитель 3-Сотрудник
 class Worker {
@@ -261,6 +262,6 @@ app.delete("/projects/:id",(req,res)=>{
   res.json(mockProjects)
 })
 
-app.listen(9000)
+app.listen(PORT)
 
 
